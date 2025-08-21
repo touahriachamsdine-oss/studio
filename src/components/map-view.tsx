@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -6,6 +7,8 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import type { Venue, Event } from '@/lib/types';
 import { Button } from './ui/button';
+import { venues, events } from '@/lib/data';
+
 
 // Fix for default icon not showing in Leaflet
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -15,13 +18,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-
-interface MapViewProps {
-  venues: Venue[];
-  events: Event[];
-}
-
-export function MapView({ venues, events }: MapViewProps) {
+export function MapView() {
   const [selectedVenue, setSelectedVenue] = React.useState<Venue | null>(null);
 
   const center: L.LatLngExpression = [35.9329, 0.0892];
