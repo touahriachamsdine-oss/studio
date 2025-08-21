@@ -1,0 +1,17 @@
+import { cn } from '@/lib/utils';
+
+interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  title: string;
+  description?: string;
+}
+
+export function PageHeader({ title, description, className, ...props }: PageHeaderProps) {
+  return (
+    <div className={cn('space-y-2', className)} {...props}>
+      <h1 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary">
+        {title}
+      </h1>
+      {description && <p className="text-muted-foreground md:text-xl/relaxed">{description}</p>}
+    </div>
+  );
+}

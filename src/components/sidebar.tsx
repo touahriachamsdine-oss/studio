@@ -1,0 +1,86 @@
+"use client";
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { LayoutGrid, Calendar, Map, Route, Sparkles, Settings, Bell } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+
+
+const navItems = [
+  { href: '/', label: 'Home', icon: LayoutGrid },
+  { href: '/calendar', label: 'Calendar', icon: Calendar },
+  { href: '/map', label: 'Map', icon: Map },
+  { href: '/guide', label: 'Tourist Guide', icon: Route },
+  { href: '/suggestions', label: 'For You', icon: Sparkles },
+];
+
+export function Sidebar() {
+  const pathname = usePathname();
+
+  return (
+    <aside className="sticky top-0 h-screen w-16 bg-card text-card-foreground border-s transition-all duration-300 ease-in-out flex flex-col items-center py-4 shadow-md">
+       <div className="p-2 mb-4">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-primary">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <TooltipProvider delayDuration={0}>
+        <nav className="flex flex-col items-center gap-2 flex-grow">
+          {navItems.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Tooltip key={item.href}>
+                <TooltipTrigger asChild>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      buttonVariants({ variant: 'ghost', size: 'icon' }),
+                      'h-10 w-10',
+                      isActive ? 'bg-accent text-accent-foreground' : 'text-muted-foreground'
+                    )}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    <span className="sr-only">{item.label}</span>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side="left" align="center">
+                  {item.label}
+                </TooltipContent>
+              </Tooltip>
+            );
+          })}
+        </nav>
+        <div className="flex flex-col items-center gap-2 mt-auto">
+            <Popover>
+                <PopoverTrigger asChild>
+                    <Button variant="ghost" size="icon" className="h-10 w-10 text-muted-foreground">
+                        <Settings className="h-5 w-5" />
+                        <span className="sr-only">Settings</span>
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent side="left" className="w-60">
+                    <div className="grid gap-4">
+                        <div className="space-y-2">
+                            <h4 className="font-medium leading-none">Settings</h4>
+                            <p className="text-sm text-muted-foreground">Manage your app settings.</p>
+                        </div>
+                        <div className="flex items-center justify-between space-x-2 p-2 rounded-lg hover:bg-muted">
+                            <Label htmlFor="notifications-switch" className="flex items-center gap-2 cursor-pointer">
+                                <Bell className="h-4 w-4" />
+                                <span>Push Notifications</span>
+                            </Label>
+                            <Switch id="notifications-switch" />
+                        </div>
+                    </div>
+                </PopoverContent>
+            </Popover>
+        </div>
+      </TooltipProvider>
+    </aside>
+  );
+}
