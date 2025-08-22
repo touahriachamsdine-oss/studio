@@ -11,7 +11,7 @@ import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import i18n from '@/lib/i18n';
 
 const navItems = [
@@ -26,39 +26,40 @@ export function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { t } = useTranslation('common');
-  const [isClient, setIsClient] = useState(false);
-
+  
+  // This effect will run on the client and ensure the language is synchronized.
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    const currentLang = pathname.split('/')[1];
+    const locales = i18n.options.lngs?.filter((lng) => lng !== 'cimode') || ['en', 'fr', 'ar'];
+    if (locales.includes(currentLang) && i18n.language !== currentLang) {
+      i18n.changeLanguage(currentLang);
+    } else if (!locales.includes(currentLang) && i18n.language !== 'en') {
+      i18n.changeLanguage('en');
+    }
+  }, [pathname]);
 
   const handleLanguageChange = (newLocale: string) => {
-    i18n.changeLanguage(newLocale);
-    
     const locales = i18n.options.lngs?.filter((lng) => lng !== 'cimode') || ['en', 'fr', 'ar'];
-    const defaultLocale = i18n.options.fallbackLng as string;
     const pathParts = pathname.split('/');
     const currentLocale = locales.find(loc => loc === pathParts[1]);
-    
-    let pathWithoutLocale = pathname;
 
+    let pathWithoutLocale = pathname;
     if (currentLocale) {
         pathParts.splice(1, 1);
         pathWithoutLocale = pathParts.join('/') || '/';
     }
 
-    let newPath;
-    if (newLocale === defaultLocale) {
-      newPath = pathWithoutLocale;
-    } else {
-      newPath = `/${newLocale}${pathWithoutLocale}`;
+    // Ensure pathWithoutLocale has a leading slash
+    if (!pathWithoutLocale.startsWith('/')) {
+        pathWithoutLocale = '/' + pathWithoutLocale;
     }
 
+    const newPath = newLocale === 'en' ? pathWithoutLocale : `/${newLocale}${pathWithoutLocale}`;
+    
     router.push(newPath);
   };
   
-
-  const currentLang = isClient ? i18n.language.split('-')[0] : 'en';
+  const currentLang = i18n.language.split('-')[0];
 
   return (
     <aside className="sticky top-0 h-screen w-16 bg-card text-card-foreground border-e transition-all duration-300 ease-in-out flex flex-col items-center py-4 shadow-md">
@@ -83,11 +84,11 @@ export function Sidebar() {
                     )}
                   >
                     <item.icon className="h-5 w-5" />
-                    <span className="sr-only">{isClient ? t(item.labelKey) : item.labelKey}</span>
+                    <span className="sr-only">{t(item.labelKey)}</span>
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent side="left" align="center">
-                  {isClient ? t(item.labelKey) : item.labelKey}
+                  {t(item.labelKey)}
                 </TooltipContent>
               </Tooltip>
             );
@@ -98,19 +99,19 @@ export function Sidebar() {
                 <PopoverTrigger asChild>
                     <Button variant="ghost" size="icon" className="h-10 w-10 text-muted-foreground">
                         <Settings className="h-5 w-5" />
-                        <span className="sr-only">{isClient ? t('settings') : 'Settings'}</span>
+                        <span className="sr-only">{t('settings')}</span>
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent side="left" className="w-60">
                     <div className="grid gap-4">
                         <div className="space-y-2">
-                            <h4 className="font-medium leading-none">{isClient ? t('settings') : 'Settings'}</h4>
-                            <p className="text-sm text-muted-foreground">{isClient ? t('manage_settings') : 'Manage your settings'}</p>
+                            <h4 className="font-medium leading-none">{t('settings')}</h4>
+                            <p className="text-sm text-muted-foreground">{t('manage_settings')}</p>
                         </div>
                          <div className="flex items-center justify-between space-x-2 p-2 rounded-lg hover:bg-muted">
                             <Label htmlFor="language-select" className="flex items-center gap-2 cursor-pointer">
                                 <Languages className="h-4 w-4" />
-                                <span>{isClient ? t('language') : 'Language'}</span>
+                                <span>{t('language')}</span>
                             </Label>
                              <Select
                                 value={currentLang}
@@ -129,7 +130,7 @@ export function Sidebar() {
                         <div className="flex items-center justify-between space-x-2 p-2 rounded-lg hover:bg-muted">
                             <Label htmlFor="notifications-switch" className="flex items-center gap-2 cursor-pointer">
                                 <Bell className="h-4 w-4" />
-                                <span>{isClient ? t('push_notifications') : 'Push Notifications'}</span>
+                                <span>{t('push_notifications')}</span>
                             </Label>
                             <Switch id="notifications-switch" />
                         </div>
