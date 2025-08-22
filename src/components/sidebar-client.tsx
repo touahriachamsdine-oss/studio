@@ -23,20 +23,27 @@ export function SidebarClient({ locale, translations }: SidebarClientProps) {
     const pathname = usePathname();
 
     const handleLanguageChange = (newLocale: string) => {
-        const supportedLocales = ['en', 'fr', 'ar'];
-        const currentLocale = supportedLocales.find(l => pathname.startsWith(`/${l}`));
-        
+        // This function should construct the new path correctly.
+        // The pathname for a non-default locale will be like /fr/some-page
+        // The pathname for the default locale will be like /some-page
+        const pathParts = pathname.split('/');
+        const currentLocale = ['en', 'fr', 'ar'].includes(pathParts[1]) ? pathParts[1] : 'en';
+
         let newPath;
-        if (currentLocale) {
-            newPath = pathname.substring(currentLocale.length + 1) || '/';
+        if (currentLocale !== 'en') {
+            // It's a prefixed path, so we replace the prefix
+            newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
         } else {
-            newPath = pathname;
+            // It's the default path, so we just add the prefix
+            newPath = `/${newLocale}${pathname}`;
         }
 
-        if (newLocale !== 'en') {
-            newPath = `/${newLocale}${newPath === '/' ? '' : newPath}`;
+        // Handle switching back to the default locale, which shouldn't have a prefix.
+        if (newLocale === 'en') {
+             newPath = pathname.replace(`/${currentLocale}`, '');
+             if (newPath === '') newPath = '/';
         }
-        
+
         router.push(newPath);
         router.refresh();
     };

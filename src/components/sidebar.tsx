@@ -31,7 +31,7 @@ export async function Sidebar({ locale }: { locale: string }) {
               <Tooltip key={item.href}>
                 <TooltipTrigger asChild>
                   <Link
-                    href={`/${locale}${item.href}`.replace(`/${locale}/`, '/')}
+                    href={item.href}
                     className={cn(
                       buttonVariants({ variant: 'ghost', size: 'icon' }),
                       'h-10 w-10',
