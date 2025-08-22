@@ -6,6 +6,9 @@ import Link from 'next/link';
 import {
   Sheet,
   SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { Button, buttonVariants } from '@/components/ui/button';
@@ -74,7 +77,11 @@ export function Header({ locale }: { locale: string }) {
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="p-0">
-             <aside className={cn("sticky top-0 h-screen w-72 bg-card text-card-foreground border-r transition-all duration-300 ease-in-out flex-col p-4 flex")}>
+             <aside className={cn("sticky top-0 h-screen w-full bg-card text-card-foreground border-r transition-all duration-300 ease-in-out flex-col p-4 flex")}>
+                <SheetHeader>
+                  <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                  <SheetDescription className="sr-only">Main navigation links and application settings.</SheetDescription>
+                </SheetHeader>
                 <div className="flex items-center gap-3 p-2 mb-4">
                     <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="hsl(var(--primary-foreground))" stroke="hsl(var(--primary-foreground))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
