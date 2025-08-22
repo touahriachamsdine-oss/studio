@@ -5,10 +5,11 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { LayoutGrid, Calendar, Map, Route, Sparkles, Settings, Bell } from 'lucide-react';
+import { LayoutGrid, Calendar, Map, Route, Sparkles, Settings, Bell, Languages } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import i18n from '@/lib/i18n';
@@ -28,11 +29,11 @@ export function Sidebar() {
 
   useEffect(() => {
     setIsClient(true);
-    const lng = pathname.split('/')[1];
-    if (lng && i18n.language !== lng) {
-      i18n.changeLanguage(lng);
-    }
-  }, [pathname]);
+  }, []);
+
+  const handleLanguageChange = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <aside className="sticky top-0 h-screen w-16 bg-card text-card-foreground border-s transition-all duration-300 ease-in-out flex flex-col items-center py-4 shadow-md">
@@ -80,6 +81,25 @@ export function Sidebar() {
                         <div className="space-y-2">
                             <h4 className="font-medium leading-none">{isClient ? t('settings') : 'Settings'}</h4>
                             <p className="text-sm text-muted-foreground">{isClient ? t('manage_settings') : 'Manage your settings'}</p>
+                        </div>
+                         <div className="flex items-center justify-between space-x-2 p-2 rounded-lg hover:bg-muted">
+                            <Label htmlFor="language-select" className="flex items-center gap-2 cursor-pointer">
+                                <Languages className="h-4 w-4" />
+                                <span>{isClient ? t('language') : 'Language'}</span>
+                            </Label>
+                             <Select
+                                value={isClient ? i18n.language : 'en'}
+                                onValueChange={handleLanguageChange}
+                              >
+                                <SelectTrigger id="language-select" className="w-[100px]">
+                                  <SelectValue placeholder="Language" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="en">English</SelectItem>
+                                  <SelectItem value="fr">Français</SelectItem>
+                                  <SelectItem value="ar">العربية</SelectItem>
+                                </SelectContent>
+                              </Select>
                         </div>
                         <div className="flex items-center justify-between space-x-2 p-2 rounded-lg hover:bg-muted">
                             <Label htmlFor="notifications-switch" className="flex items-center gap-2 cursor-pointer">

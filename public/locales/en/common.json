@@ -1,5 +1,6 @@
 {
   "settings": "Settings",
-  "manage_settings": "Manage your app settings.",
-  "push_notifications": "Push Notifications"
+  "manage_settings": "Manage your settings",
+  "push_notifications": "Push Notifications",
+  "language": "Language"
 }

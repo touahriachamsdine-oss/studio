@@ -1,5 +1,6 @@
 {
   "settings": "Paramètres",
-  "manage_settings": "Gérez les paramètres de votre application.",
-  "push_notifications": "Notifications push"
+  "manage_settings": "Gérez vos paramètres",
+  "push_notifications": "Notifications Push",
+  "language": "Langue"
 }

@@ -1,5 +1,6 @@
 {
   "settings": "الإعدادات",
-  "manage_settings": "إدارة إعدادات التطبيق الخاص بك.",
-  "push_notifications": "إشعارات الدفع"
+  "manage_settings": "إدارة إعداداتك",
+  "push_notifications": "الإشعارات",
+  "language": "اللغة"
 }
