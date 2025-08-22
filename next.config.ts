@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   i18n: {
     locales: ['en', 'ar', 'fr'],
-    defaultLocale: 'en',
+    defaultLocale: 'fr',
   },
   typescript: {
     ignoreBuildErrors: true,
