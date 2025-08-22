@@ -1,13 +1,12 @@
-
 {
   "home": "الرئيسية",
   "calendar": "التقويم",
   "map": "الخريطة",
   "touristGuide": "دليل سياحي",
-  "forYou": "لك",
-  "admin": "مسؤل",
+  "forYou": "لأجلك",
+  "admin": "المسؤول",
   "settings": "الإعدادات",
   "manage_settings": "إدارة إعداداتك",
   "language": "اللغة",
-  "push_notifications": "دفع الإخطارات"
+  "push_notifications": "إشعارات الدفع"
 }
