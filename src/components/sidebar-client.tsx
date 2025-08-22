@@ -37,9 +37,9 @@ export function SidebarClient({ locale, translations }: SidebarClientProps) {
     React.useState(true);
 
   const handleLanguageChange = (newLocale: string) => {
-    // This regex removes the current locale from the path
-    const newPath = pathname.replace(/^\/[a-z]{2}/, `/${newLocale}`);
+    const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
     router.push(newPath);
+    router.refresh();
   };
 
   return (
