@@ -45,3 +45,5 @@ export default function AdminPage() {
         <AdminLogin onLogin={handleLogin} />
       )}
     </div>
+  );
+}
