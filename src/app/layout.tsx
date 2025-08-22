@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
-import { Toaster } from '@/components/ui/toaster';
 import { Sidebar } from '@/components/sidebar';
+import { Providers } from '@/components/providers';
 
 export const metadata: Metadata = {
   title: 'Funder Mustghanem',
@@ -32,13 +32,14 @@ export default function RootLayout({
           crossOrigin=""/>
       </head>
       <body className={cn('font-body antialiased', 'bg-background text-foreground')}>
-        <div className="relative flex min-h-screen">
-          <Sidebar locale={locale || 'en'} />
-          <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-            {children}
-          </main>
-        </div>
-        <Toaster />
+        <Providers>
+          <div className="relative flex min-h-screen">
+            <Sidebar locale={locale || 'en'} />
+            <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+              {children}
+            </main>
+          </div>
+        </Providers>
       </body>
     </html>
   );
