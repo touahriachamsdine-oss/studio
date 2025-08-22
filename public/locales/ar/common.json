@@ -1,13 +1,4 @@
-
 {
-  "home": "الرئيسية",
-  "calendar": "التقويم",
-  "map": "الخريطة",
-  "touristGuide": "الدليل السياحي",
-  "forYou": "مقترحات لك",
-  "admin": "المسؤول",
-  "settings": "الإعدادات",
-  "manage_settings": "إدارة إعداداتك",
-  "language": "اللغة",
-  "push_notifications": "الإشعارات"
+  "pageTitle": "صفحة رئيسية",
+  "greeting": "أهلاً بك!"
 }

@@ -1,13 +1,4 @@
-
 {
-  "home": "Home",
-  "calendar": "Calendar",
-  "map": "Map",
-  "touristGuide": "Tourist Guide",
-  "forYou": "For You",
-  "admin": "Admin",
-  "settings": "Settings",
-  "manage_settings": "Manage your settings",
-  "language": "Language",
-  "push_notifications": "Push Notifications"
+  "pageTitle": "My Website",
+  "greeting": "Hello, welcome to our website!"
 }

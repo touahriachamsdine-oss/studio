@@ -1,13 +1,4 @@
-
 {
-  "home": "Accueil",
-  "calendar": "Calendrier",
-  "map": "Carte",
-  "touristGuide": "Guide Touristique",
-  "forYou": "Pour Vous",
-  "admin": "Admin",
-  "settings": "Paramètres",
-  "manage_settings": "Gérez vos paramètres",
-  "language": "Langue",
-  "push_notifications": "Notifications Push"
+  "pageTitle": "Mon site web",
+  "greeting": "Bonjour le monde!"
 }
