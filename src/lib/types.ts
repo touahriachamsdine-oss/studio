@@ -18,3 +18,12 @@ export interface Venue {
   lat: number;
   lng: number;
 }
+
+export interface PointOfInterest {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  lat: number;
+  lng: number;
+}
