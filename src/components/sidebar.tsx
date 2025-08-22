@@ -35,33 +35,23 @@ export function Sidebar() {
   const handleLanguageChange = (newLocale: string) => {
     i18n.changeLanguage(newLocale);
     
-    // Remove any existing locale prefix
     const locales = i18n.options.lngs?.filter((lng) => lng !== 'cimode') || ['en', 'fr', 'ar'];
+    const defaultLocale = i18n.options.fallbackLng as string;
     const pathParts = pathname.split('/');
     const currentLocale = locales.find(loc => loc === pathParts[1]);
+    
+    let pathWithoutLocale = pathname;
+
+    if (currentLocale) {
+        pathParts.splice(1, 1);
+        pathWithoutLocale = pathParts.join('/') || '/';
+    }
 
     let newPath;
-    if (currentLocale) {
-      // If there is a locale, replace it
-      pathParts[1] = newLocale;
-      newPath = pathParts.join('/');
+    if (newLocale === defaultLocale) {
+      newPath = pathWithoutLocale;
     } else {
-      // If there is no locale (e.g. default 'en'), add it
-      newPath = `/${newLocale}${pathname}`;
-    }
-
-    // If the new locale is the default, remove the prefix
-    if (newLocale === i18n.options.fallbackLng) {
-      const parts = newPath.split('/');
-      if (parts[1] === newLocale) {
-        parts.splice(1, 1);
-        newPath = parts.join('/') || '/';
-      }
-    }
-    
-    // Ensure root path is handled correctly
-    if (newPath === '') {
-        newPath = '/';
+      newPath = `/${newLocale}${pathWithoutLocale}`;
     }
 
     router.push(newPath);
@@ -93,11 +83,11 @@ export function Sidebar() {
                     )}
                   >
                     <item.icon className="h-5 w-5" />
-                    <span className="sr-only">{isClient ? t(item.labelKey) : ''}</span>
+                    <span className="sr-only">{isClient ? t(item.labelKey) : item.labelKey}</span>
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent side="left" align="center">
-                  {isClient ? t(item.labelKey) : ''}
+                  {isClient ? t(item.labelKey) : item.labelKey}
                 </TooltipContent>
               </Tooltip>
             );
