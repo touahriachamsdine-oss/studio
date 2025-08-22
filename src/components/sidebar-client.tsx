@@ -53,29 +53,39 @@ function SettingsPopover({ locale }: { locale: string }) {
     const pathname = usePathname();
 
     const handleLanguageChange = (newLocale: string) => {
-        const pathParts = pathname.split('/');
-        const currentLocale = ['en', 'fr', 'ar'].find(loc => loc === pathParts[1]);
+        const supportedLocales = ['en', 'fr', 'ar'];
+        const currentPath = pathname;
+        
+        // Find if the current path starts with a locale
+        const pathSegments = currentPath.split('/');
+        const currentLocale = supportedLocales.find(l => l === pathSegments[1]);
 
         let newPath;
+
         if (currentLocale) {
-            if (currentLocale !== newLocale) {
-                pathParts[1] = newLocale;
-                newPath = pathParts.join('/');
-            } else {
-                newPath = pathname;
-            }
+            // If there's a locale, replace it with the new one
+            pathSegments[1] = newLocale;
+            newPath = pathSegments.join('/');
         } else {
-            newPath = `/${newLocale}${pathname}`;
+            // If there's no locale (it's 'en'), prepend the new one
+            newPath = `/${newLocale}${currentPath}`;
         }
 
+        // If the new locale is 'en', we need to remove the locale prefix
         if (newLocale === 'en') {
-             newPath = pathname.replace(`/${currentLocale}`, '');
-             if (!newPath.startsWith('/')) {
-                 newPath = '/' + newPath;
-             }
+            if (currentLocale) {
+                // Was on a prefixed locale, now going to 'en'
+                pathSegments.splice(1, 1);
+                newPath = pathSegments.join('/') || '/';
+            } else {
+                // Was already 'en', no change needed
+                newPath = currentPath;
+            }
         }
-
-        router.push(newPath || '/');
+        
+        if (newPath !== currentPath) {
+            router.push(newPath);
+        }
     };
 
     return (
@@ -123,4 +133,3 @@ function SettingsPopover({ locale }: { locale: string }) {
         </Popover>
     );
 }
-
