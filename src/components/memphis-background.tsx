@@ -13,6 +13,9 @@ const shapes = [
   { type: 'circle', color: 'bg-secondary/70', size: 'w-10 h-10', top: '15%', left: '60%', animation: 'animate-float-2' },
   { type: 'circle', color: 'bg-primary', size: 'w-5 h-5', top: '55%', left: '5%', animation: 'animate-drift' },
   { type: 'circle', color: 'bg-accent', size: 'w-14 h-14', top: '70%', left: '85%', animation: 'animate-float-1' },
+  { type: 'circle', color: 'bg-primary', size: 'w-20 h-20', top: '2%', left: '75%', animation: 'animate-float-1' },
+  { type: 'circle', color: 'bg-secondary', size: 'w-4 h-4', top: '95%', left: '10%', animation: 'animate-float-2' },
+  { type: 'circle', color: 'bg-accent/80', size: 'w-28 h-28', top: '80%', left: '0%', animation: 'animate-drift' },
 
 
   // Squares
