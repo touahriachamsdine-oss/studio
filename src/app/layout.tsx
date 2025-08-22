@@ -4,6 +4,7 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { Sidebar } from '@/components/sidebar';
 import { Providers } from '@/components/providers';
+import { MemphisBackground } from '@/components/memphis-background';
 
 export const metadata: Metadata = {
   title: 'Funder Mustghanem',
@@ -35,8 +36,9 @@ export default function RootLayout({
       <body className={cn('font-body antialiased', 'bg-background text-foreground')}>
         <Providers>
           <div className="relative flex min-h-screen">
+            <MemphisBackground />
             <Sidebar locale={locale || 'fr'} />
-            <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+            <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 z-10">
               {children}
             </main>
           </div>

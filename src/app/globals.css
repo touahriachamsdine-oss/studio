@@ -76,9 +76,76 @@
     @apply shadow-[2px_2px_0px_theme(colors.border)] transition-all duration-200;
   }
   .hard-shadow-hover:hover {
-     @apply shadow-[6px_6px_0px_theme(colors.border)];
+     @apply shadow-[6px_6px_0px_theme(colors.border)] -translate-y-1;
   }
    .hard-shadow-hover-sm:hover {
      @apply shadow-[3px_3px_0px_theme(colors.border)];
   }
+}
+
+
+@layer utilities {
+  .shape {
+    position: absolute;
+    will-change: transform, opacity;
+  }
+
+  .shape-circle {
+    border-radius: 50%;
+  }
+
+  .shape-triangle {
+    width: 0;
+    height: 0;
+    background-color: transparent !important;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 50px solid;
+  }
+
+  .shape-squiggle {
+    width: 60px;
+    height: 20px;
+    background: transparent;
+    border: 6px solid;
+    border-color: inherit;
+    border-radius: 30px;
+    border-top: none;
+    border-left: none;
+  }
+}
+
+@keyframes float-1 {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+  50% { transform: translateY(-30px) rotate(180deg); opacity: 0.8; }
+  100% { transform: translateY(0px) rotate(360deg); opacity: 1; }
+}
+
+@keyframes float-2 {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.5; }
+  25% { transform: translateY(-20px) translateX(10px) rotate(90deg); opacity: 1; }
+  50% { transform: translateY(10px) translateX(-20px) rotate(180deg); opacity: 0.7; }
+  75% { transform: translateY(0px) translateX(10px) rotate(270deg); opacity: 1; }
+  100% { transform: translateY(0px) translateX(0px) rotate(360deg); opacity: 0.5; }
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(15px, -15px) rotate(20deg); }
+  40% { transform: translate(-10px, 10px) rotate(-10deg); }
+  60% { transform: translate(10px, 20px) rotate(5deg); }
+  80% { transform: translate(-15px, -10px) rotate(-15deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.animate-float-1 {
+  animation: float-1 15s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-2 20s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 25s ease-in-out infinite;
 }
