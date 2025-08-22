@@ -36,16 +36,27 @@ export function Sidebar() {
     i18n.changeLanguage(newLocale);
     
     // Remove any existing locale prefix
-    let newPath = pathname;
-    const locales = i18n.options.lngs || ['en', 'fr', 'ar'];
-    const currentLocale = locales.find(loc => newPath.startsWith(`/${loc}`));
+    const locales = i18n.options.lngs?.filter((lng) => lng !== 'cimode') || ['en', 'fr', 'ar'];
+    const pathParts = pathname.split('/');
+    const currentLocale = locales.find(loc => loc === pathParts[1]);
+
+    let newPath;
     if (currentLocale) {
-      newPath = newPath.substring(currentLocale.length + 1); // remove /<locale>
+      // If there is a locale, replace it
+      pathParts[1] = newLocale;
+      newPath = pathParts.join('/');
+    } else {
+      // If there is no locale (e.g. default 'en'), add it
+      newPath = `/${newLocale}${pathname}`;
     }
 
-    // Add new locale prefix if it's not the default
-    if (newLocale !== 'en') {
-      newPath = `/${newLocale}${newPath || '/'}`;
+    // If the new locale is the default, remove the prefix
+    if (newLocale === i18n.options.fallbackLng) {
+      const parts = newPath.split('/');
+      if (parts[1] === newLocale) {
+        parts.splice(1, 1);
+        newPath = parts.join('/') || '/';
+      }
     }
     
     // Ensure root path is handled correctly
@@ -69,7 +80,7 @@ export function Sidebar() {
       <TooltipProvider delayDuration={0}>
         <nav className="flex flex-col items-center gap-2 flex-grow">
           {navItems.map((item) => {
-            const isActive = item.href === '/' ? pathname.split('/').length <=2 : pathname.includes(item.href);
+            const isActive = item.href === '/' ? pathname.split('/').filter(p => p).length <= 1 : pathname.includes(item.href);
             return (
               <Tooltip key={item.href}>
                 <TooltipTrigger asChild>
