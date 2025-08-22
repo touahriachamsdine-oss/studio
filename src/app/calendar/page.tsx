@@ -1,3 +1,4 @@
+
 import { EventCalendar } from '@/components/event-calendar';
 import { PageHeader } from '@/components/page-header';
 import { events } from '@/lib/data';
