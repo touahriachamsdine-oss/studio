@@ -1,22 +1,10 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { LayoutGrid, Calendar, Map, Route, Sparkles, Shield, BarChart, Users, LifeBuoy, Settings } from 'lucide-react';
+import { topNavItems, bottomNavItems } from '@/lib/nav-data';
 import { getTranslation } from '@/app/i18n';
 import { SidebarClient } from './sidebar-client';
 import { Separator } from './ui/separator';
-
-const topNavItems = [
-  { href: '/', labelKey: 'home', icon: LayoutGrid },
-  { href: '/calendar', labelKey: 'calendar', icon: Calendar },
-  { href: '/map', labelKey: 'map', icon: Map },
-  { href: '/guide', labelKey: 'touristGuide', icon: Route },
-  { href: '/suggestions', labelKey: 'forYou', icon: Sparkles },
-];
-
-const bottomNavItems = [
-    { href: '/admin', labelKey: 'admin', icon: Shield },
-]
 
 export async function Sidebar({ locale, className }: { locale: string, className?: string }) {
   const { t } = await getTranslation(locale, 'common');
