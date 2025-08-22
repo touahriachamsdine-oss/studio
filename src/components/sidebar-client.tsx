@@ -1,3 +1,4 @@
+
 "use client";
 
 import { usePathname, useRouter } from 'next/navigation';
@@ -42,6 +43,11 @@ export function SidebarClient({ locale, translations }: SidebarClientProps) {
         if (newLocale === 'en') {
              newPath = pathname.replace(`/${currentLocale}`, '');
              if (newPath === '') newPath = '/';
+        }
+        
+        // A special case for the root path when switching from default to non-default
+        if (pathname === '/' && newLocale !== 'en') {
+          newPath = `/${newLocale}`;
         }
 
         router.push(newPath);
