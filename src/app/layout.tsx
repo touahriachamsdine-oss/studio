@@ -3,6 +3,7 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import { Sidebar } from '@/components/sidebar';
+import '@/lib/i18n';
 
 export const metadata: Metadata = {
   title: 'Funder Mustghanem',

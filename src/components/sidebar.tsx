@@ -9,7 +9,9 @@ import { LayoutGrid, Calendar, Map, Route, Sparkles, Settings, Bell } from 'luci
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
+import i18n from '@/lib/i18n';
 
 const navItems = [
   { href: '/', label: 'Home', icon: LayoutGrid },
@@ -21,6 +23,14 @@ const navItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const { t } = useTranslation('common');
+
+  useEffect(() => {
+    const lng = pathname.split('/')[1];
+    if (lng && i18n.language !== lng) {
+      i18n.changeLanguage(lng);
+    }
+  }, [pathname]);
 
   return (
     <aside className="sticky top-0 h-screen w-16 bg-card text-card-foreground border-s transition-all duration-300 ease-in-out flex flex-col items-center py-4 shadow-md">
@@ -60,19 +70,19 @@ export function Sidebar() {
                 <PopoverTrigger asChild>
                     <Button variant="ghost" size="icon" className="h-10 w-10 text-muted-foreground">
                         <Settings className="h-5 w-5" />
-                        <span className="sr-only">Settings</span>
+                        <span className="sr-only">{t('settings')}</span>
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent side="left" className="w-60">
                     <div className="grid gap-4">
                         <div className="space-y-2">
-                            <h4 className="font-medium leading-none">Settings</h4>
-                            <p className="text-sm text-muted-foreground">Manage your app settings.</p>
+                            <h4 className="font-medium leading-none">{t('settings')}</h4>
+                            <p className="text-sm text-muted-foreground">{t('manage_settings')}</p>
                         </div>
                         <div className="flex items-center justify-between space-x-2 p-2 rounded-lg hover:bg-muted">
                             <Label htmlFor="notifications-switch" className="flex items-center gap-2 cursor-pointer">
                                 <Bell className="h-4 w-4" />
-                                <span>Push Notifications</span>
+                                <span>{t('push_notifications')}</span>
                             </Label>
                             <Switch id="notifications-switch" />
                         </div>
