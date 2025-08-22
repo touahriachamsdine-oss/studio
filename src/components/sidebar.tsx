@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { LayoutGrid, Calendar, Map, Route, Sparkles } from 'lucide-react';
+import { LayoutGrid, Calendar, Map, Route, Sparkles, Shield } from 'lucide-react';
 import { getTranslation } from '@/app/i18n';
 import { SidebarClient } from './sidebar-client';
 
@@ -12,6 +12,7 @@ const navItems = [
   { href: '/map', labelKey: 'map', icon: Map },
   { href: '/guide', labelKey: 'touristGuide', icon: Route },
   { href: '/suggestions', labelKey: 'forYou', icon: Sparkles },
+  { href: '/admin', labelKey: 'admin', icon: Shield },
 ];
 
 export async function Sidebar({ locale }: { locale: string }) {

@@ -4,9 +4,10 @@
   "calendar": "التقويم",
   "map": "الخريطة",
   "touristGuide": "دليل سياحي",
-  "forYou": "لأجلك",
+  "forYou": "لك",
+  "admin": "مسؤل",
   "settings": "الإعدادات",
   "manage_settings": "إدارة إعداداتك",
   "language": "اللغة",
-  "push_notifications": "الإشعارات"
+  "push_notifications": "دفع الإخطارات"
 }
