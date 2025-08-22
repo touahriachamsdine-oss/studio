@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 95%;
+    --background: 210 20% 98%;
     --foreground: 20 14.3% 4.1%;
     --card: 0 0% 100%;
     --card-foreground: 20 14.3% 4.1%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 14.3% 4.1%;
-    --primary: 36 100% 50%;
-    --primary-foreground: 20 14.3% 4.1%;
-    --secondary: 0 0% 90%;
+    --primary: 340 85% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 93% 58%;
     --secondary-foreground: 24 9.8% 10%;
-    --muted: 0 0% 90%;
+    --muted: 210 20% 94%;
     --muted-foreground: 25 5.3% 44.7%;
-    --accent: 180 100% 25.1%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 180 80% 45%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 36 100% 50%;
+    --border: 20 14.3% 4.1%;
+    --input: 210 20% 94%;
+    --ring: 340 85% 60%;
     --radius: 0.5rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -38,19 +38,19 @@
     --card-foreground: 0 0% 98%;
     --popover: 20 14.3% 4.1%;
     --popover-foreground: 0 0% 98%;
-    --primary: 36 100% 50%;
-    --primary-foreground: 20 14.3% 4.1%;
-    --secondary: 12 6.5% 15.1%;
+    --primary: 340 85% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 93% 58%;
     --secondary-foreground: 0 0% 98%;
     --muted: 12 6.5% 15.1%;
     --muted-foreground: 24 5.4% 63.9%;
-    --accent: 180 80% 35%;
+    --accent: 180 80% 45%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 12 6.5% 15.1%;
+    --border: 0 0% 98%;
     --input: 12 6.5% 15.1%;
-    --ring: 36 100% 50%;
+    --ring: 340 85% 60%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -65,5 +65,20 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .hard-shadow {
+    @apply shadow-[4px_4px_0px_theme(colors.border)] transition-all duration-200;
+  }
+  .hard-shadow-sm {
+    @apply shadow-[2px_2px_0px_theme(colors.border)] transition-all duration-200;
+  }
+  .hard-shadow-hover:hover {
+     @apply shadow-[6px_6px_0px_theme(colors.border)];
+  }
+   .hard-shadow-hover-sm:hover {
+     @apply shadow-[3px_3px_0px_theme(colors.border)];
   }
 }

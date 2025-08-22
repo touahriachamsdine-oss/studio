@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
@@ -20,9 +19,9 @@ export async function Sidebar({ locale }: { locale: string }) {
   const { t } = await getTranslation(locale, 'common');
 
   return (
-    <aside className="sticky top-0 h-screen w-16 bg-card text-card-foreground border-e transition-all duration-300 ease-in-out flex flex-col items-center py-4 shadow-md">
+    <aside className="sticky top-0 h-screen w-16 bg-card text-card-foreground border-e-2 transition-all duration-300 ease-in-out flex flex-col items-center py-4">
        <div className="p-2 mb-4">
-         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-primary">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="hsl(var(--primary))" stroke="hsl(var(--foreground))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
         </svg>
       </div>

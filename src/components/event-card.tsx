@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import type { Event } from '@/lib/types';
 import { Calendar, Clock, MapPin, Plus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { cn } from '@/lib/utils';
 
 interface EventCardProps {
   event: Event;
@@ -21,15 +22,15 @@ export function EventCard({ event }: EventCardProps) {
   };
 
   return (
-    <Card className="flex flex-col overflow-hidden h-full transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+    <Card className="flex flex-col overflow-hidden h-full transform transition-all duration-300 hard-shadow-hover">
       <CardHeader className="p-0 relative">
-        <Badge variant="secondary" className="absolute top-2 start-2 z-10">{event.category}</Badge>
+        <Badge variant="secondary" className="absolute top-3 start-3 z-10 border-2 hard-shadow-sm">{event.category}</Badge>
         <Image
           src={event.image}
           alt={event.name}
           width={600}
           height={400}
-          className="w-full h-48 object-cover"
+          className="w-full h-48 object-cover rounded-t-md border-b-2"
           data-ai-hint={event.imageHint}
         />
       </CardHeader>
@@ -51,7 +52,7 @@ export function EventCard({ event }: EventCardProps) {
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button onClick={handleAddToCalendar} className="w-full bg-accent hover:bg-accent/90">
+        <Button onClick={handleAddToCalendar} className="w-full" variant="secondary">
             <Plus className="me-2 h-4 w-4" /> Add to Calendar
         </Button>
       </CardFooter>
