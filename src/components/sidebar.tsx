@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -15,15 +15,16 @@ import { useEffect, useState } from 'react';
 import i18n from '@/lib/i18n';
 
 const navItems = [
-  { href: '/', label: 'Home', icon: LayoutGrid },
-  { href: '/calendar', label: 'Calendar', icon: Calendar },
-  { href: '/map', label: 'Map', icon: Map },
-  { href: '/guide', label: 'Tourist Guide', icon: Route },
-  { href: '/suggestions', label: 'For You', icon: Sparkles },
+  { href: '/', labelKey: 'home', icon: LayoutGrid },
+  { href: '/calendar', labelKey: 'calendar', icon: Calendar },
+  { href: '/map', labelKey: 'map', icon: Map },
+  { href: '/guide', labelKey: 'touristGuide', icon: Route },
+  { href: '/suggestions', labelKey: 'forYou', icon: Sparkles },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { t } = useTranslation('common');
   const [isClient, setIsClient] = useState(false);
 
@@ -33,10 +34,24 @@ export function Sidebar() {
 
   const handleLanguageChange = (lng: string) => {
     i18n.changeLanguage(lng);
+    const locales = i18n.options.lngs || ['en', 'fr', 'ar'];
+    const currentLocale = locales.find(loc => pathname.startsWith(`/${loc}`));
+    let newPath = pathname;
+
+    if (currentLocale) {
+      newPath = pathname.replace(`/${currentLocale}`, `/${lng}`);
+    } else {
+      // It might be the default locale without a prefix
+      newPath = `/${lng}${pathname}`;
+    }
+    router.push(newPath);
   };
+  
+
+  const currentLang = isClient ? i18n.language : 'en';
 
   return (
-    <aside className="sticky top-0 h-screen w-16 bg-card text-card-foreground border-s transition-all duration-300 ease-in-out flex flex-col items-center py-4 shadow-md">
+    <aside className="sticky top-0 h-screen w-16 bg-card text-card-foreground border-e transition-all duration-300 ease-in-out flex flex-col items-center py-4 shadow-md">
        <div className="p-2 mb-4">
          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8 text-primary">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
@@ -45,7 +60,7 @@ export function Sidebar() {
       <TooltipProvider delayDuration={0}>
         <nav className="flex flex-col items-center gap-2 flex-grow">
           {navItems.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = item.href === '/' ? pathname.split('/').length <=2 : pathname.includes(item.href);
             return (
               <Tooltip key={item.href}>
                 <TooltipTrigger asChild>
@@ -58,11 +73,11 @@ export function Sidebar() {
                     )}
                   >
                     <item.icon className="h-5 w-5" />
-                    <span className="sr-only">{item.label}</span>
+                    <span className="sr-only">{isClient ? t(item.labelKey) : ''}</span>
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent side="left" align="center">
-                  {item.label}
+                  {isClient ? t(item.labelKey) : ''}
                 </TooltipContent>
               </Tooltip>
             );
@@ -88,7 +103,7 @@ export function Sidebar() {
                                 <span>{isClient ? t('language') : 'Language'}</span>
                             </Label>
                              <Select
-                                value={isClient ? i18n.language : 'en'}
+                                value={currentLang}
                                 onValueChange={handleLanguageChange}
                               >
                                 <SelectTrigger id="language-select" className="w-[100px]">
