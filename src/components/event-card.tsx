@@ -22,20 +22,20 @@ export function EventCard({ event }: EventCardProps) {
   };
 
   return (
-    <Card className="flex flex-col overflow-hidden h-full transform transition-all duration-300 hard-shadow-hover">
+    <Card className="flex flex-col overflow-hidden h-full transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       <CardHeader className="p-0 relative">
-        <Badge variant="secondary" className="absolute top-3 start-3 z-10 border-2 hard-shadow-sm">{event.category}</Badge>
+        <Badge variant="secondary" className="absolute top-3 right-3 z-10">{event.category}</Badge>
         <Image
           src={event.image}
           alt={event.name}
           width={600}
           height={400}
-          className="w-full h-48 object-cover rounded-t-md border-b-2"
+          className="w-full h-48 object-cover"
           data-ai-hint={event.imageHint}
         />
       </CardHeader>
       <CardContent className="p-4 flex-grow">
-        <CardTitle className="font-headline text-lg mb-2 truncate">{event.name}</CardTitle>
+        <CardTitle className="text-lg mb-2 truncate">{event.name}</CardTitle>
         <div className="space-y-2 text-sm text-muted-foreground">
            <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-primary" />
@@ -52,8 +52,8 @@ export function EventCard({ event }: EventCardProps) {
         </div>
       </CardContent>
       <CardFooter className="p-4 pt-0">
-        <Button onClick={handleAddToCalendar} className="w-full" variant="secondary">
-            <Plus className="me-2 h-4 w-4" /> Add to Calendar
+        <Button onClick={handleAddToCalendar} className="w-full" variant="outline">
+            <Plus className="mr-2 h-4 w-4" /> Add to Calendar
         </Button>
       </CardFooter>
     </Card>

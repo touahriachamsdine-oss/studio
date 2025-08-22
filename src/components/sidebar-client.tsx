@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -19,6 +18,7 @@ import {
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Settings } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface SidebarClientProps {
   locale: string;
@@ -45,9 +45,9 @@ export function SidebarClient({ locale, translations }: SidebarClientProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" className="h-10 w-10 text-muted-foreground">
-          <Settings className="h-5 w-5" />
-          <span className="sr-only">{translations.settings}</span>
+        <Button variant="ghost" className={cn('w-full justify-start text-base')}>
+          <Settings className="mr-3 h-5 w-5" />
+          {translations.settings}
         </Button>
       </PopoverTrigger>
       <PopoverContent side="right" align="start" className="w-64">

@@ -32,10 +32,10 @@ export default function Home() {
           placeholder="Search events..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="md:w-1/3"
+          className="max-w-sm"
         />
         <Select value={category} onValueChange={setCategory}>
-          <SelectTrigger className="md:w-[180px]">
+          <SelectTrigger className="w-full md:w-[180px]">
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
           <SelectContent>
@@ -56,7 +56,7 @@ export default function Home() {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 p-12 text-center">
+        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-muted-foreground/30 bg-card p-12 text-center h-64">
             <h3 className="text-xl font-bold tracking-tight text-foreground">No events found</h3>
             <p className="text-muted-foreground">Try adjusting your search or filters.</p>
         </div>
