@@ -30,7 +30,7 @@ export async function Sidebar({ locale }: { locale: string }) {
               <Tooltip key={item.href}>
                 <TooltipTrigger asChild>
                   <Link
-                    href={item.href}
+                    href={`/${locale}${item.href}`.replace(`/${locale}/`, '/')}
                     className={cn(
                       buttonVariants({ variant: 'ghost', size: 'icon' }),
                       'h-10 w-10',
@@ -49,7 +49,12 @@ export async function Sidebar({ locale }: { locale: string }) {
           )}
         </nav>
         <div className="flex flex-col items-center gap-2 mt-auto">
-            <SidebarClient locale={locale} />
+            <SidebarClient locale={locale} translations={{
+                settings: t('settings'),
+                manage_settings: t('manage_settings'),
+                language: t('language'),
+                push_notifications: t('push_notifications'),
+            }} />
         </div>
       </TooltipProvider>
     </aside>
