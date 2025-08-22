@@ -53,39 +53,28 @@ function SettingsPopover({ locale }: { locale: string }) {
     const pathname = usePathname();
 
     const handleLanguageChange = (newLocale: string) => {
-        const supportedLocales = ['en', 'fr', 'ar'];
-        const currentPath = pathname;
-        
-        // Find if the current path starts with a locale
-        const pathSegments = currentPath.split('/');
-        const currentLocale = supportedLocales.find(l => l === pathSegments[1]);
+      // This logic is simplified to be more robust.
+      // It removes any existing locale prefix and then adds the new one if needed.
+      const supportedLocales = ['en', 'fr', 'ar'];
+      const currentPath = pathname;
+      
+      let newPath = currentPath;
 
-        let newPath;
+      const currentLocale = supportedLocales.find(l => newPath.startsWith(`/${l}`));
 
-        if (currentLocale) {
-            // If there's a locale, replace it with the new one
-            pathSegments[1] = newLocale;
-            newPath = pathSegments.join('/');
-        } else {
-            // If there's no locale (it's 'en'), prepend the new one
-            newPath = `/${newLocale}${currentPath}`;
-        }
+      if (currentLocale) {
+        // remove old locale
+        newPath = newPath.substring(currentLocale.length + 1);
+        if(!newPath.startsWith('/')) newPath = `/${newPath}`
+      }
+      
+      if (newLocale !== 'en') {
+        newPath = `/${newLocale}${newPath}`;
+      }
 
-        // If the new locale is 'en', we need to remove the locale prefix
-        if (newLocale === 'en') {
-            if (currentLocale) {
-                // Was on a prefixed locale, now going to 'en'
-                pathSegments.splice(1, 1);
-                newPath = pathSegments.join('/') || '/';
-            } else {
-                // Was already 'en', no change needed
-                newPath = currentPath;
-            }
-        }
-        
-        if (newPath !== currentPath) {
-            router.push(newPath);
-        }
+      if(newPath !== currentPath) {
+        router.push(newPath);
+      }
     };
 
     return (
