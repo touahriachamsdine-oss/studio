@@ -27,10 +27,10 @@ export function EventCalendar({ events }: EventCalendarProps) {
   const selectedDayEvents = date ? eventsByDate[date.toDateString()] || [] : [];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div className="md:col-span-2">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="lg:col-span-2">
         <Card>
-          <CardContent className="p-2">
+          <CardContent className="p-0 sm:p-2">
             <Calendar
               mode="single"
               selected={date}
@@ -50,7 +50,7 @@ export function EventCalendar({ events }: EventCalendarProps) {
           </CardContent>
         </Card>
       </div>
-      <div className="md:col-span-1">
+      <div className="lg:col-span-1">
         <Card className="h-full">
           <CardHeader>
             <CardTitle>
@@ -61,7 +61,7 @@ export function EventCalendar({ events }: EventCalendarProps) {
             {selectedDayEvents.length > 0 ? (
               <ul className="space-y-4">
                 {selectedDayEvents.map(event => (
-                  <li key={event.id} className="p-3 rounded-lg bg-muted/50">
+                  <li key={event.id} className="p-4 rounded-xl bg-background">
                     <h4 className="font-semibold text-primary">{event.name}</h4>
                     <p className="text-sm text-muted-foreground">{event.description}</p>
                     <div className="flex items-center gap-4 mt-2 text-xs">

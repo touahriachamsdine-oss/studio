@@ -224,7 +224,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
   return (
     <div className="space-y-8">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
             <h2 className="text-2xl font-bold">Welcome, Admin!</h2>
             <Button variant="outline" onClick={onLogout}>
                 <LogOut className="mr-2 h-4 w-4" /> Logout
@@ -292,7 +292,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       <h3 className="text-lg font-semibold">Events</h3>
                       <Button onClick={handleAddEvent} size="sm"><PlusCircle className="mr-2 h-4 w-4" /> Add Event</Button>
                   </div>
-                  <div className="border rounded-md">
+                  <div className="border-2 border-foreground rounded-2xl overflow-hidden">
                       <Table>
                           <TableHeader>
                               <TableRow>
@@ -319,7 +319,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       <h3 className="text-lg font-semibold">Venues</h3>
                       <Button onClick={handleAddVenue} size="sm"><PlusCircle className="mr-2 h-4 w-4" /> Add Venue</Button>
                   </div>
-                   <div className="border rounded-md">
+                   <div className="border-2 border-foreground rounded-2xl overflow-hidden">
                       <Table>
                           <TableHeader>
                               <TableRow>
@@ -346,7 +346,7 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
                       <h3 className="text-lg font-semibold">Points of Interest</h3>
                       <Button onClick={handleAddPoi} size="sm"><PlusCircle className="mr-2 h-4 w-4" /> Add POI</Button>
                   </div>
-                   <div className="border rounded-md">
+                   <div className="border-2 border-foreground rounded-2xl overflow-hidden">
                       <Table>
                           <TableHeader>
                               <TableRow>
@@ -377,17 +377,17 @@ export function AdminDashboard({ onLogout }: AdminDashboardProps) {
             <DialogHeader><DialogTitle>{editingEvent ? 'Edit Event' : 'Add New Event'}</DialogTitle></DialogHeader>
             <Form {...eventForm}><form onSubmit={eventForm.handleSubmit(onEventSubmit)} className="space-y-4">
                 <FormField control={eventForm.control} name="name" render={({ field }) => (<FormItem><FormLabel>Event Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField control={eventForm.control} name="date" render={({ field }) => (<FormItem><FormLabel>Date</FormLabel><FormControl><Input type="date" {...field} /></FormControl><FormMessage /></FormItem>)} />
                     <FormField control={eventForm.control} name="time" render={({ field }) => (<FormItem><FormLabel>Time</FormLabel><FormControl><Input type="time" {...field} /></FormControl><FormMessage /></FormItem>)} />
                 </div>
                 <FormField control={eventForm.control} name="location" render={({ field }) => (<FormItem><FormLabel>Location</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
                 <FormField control={eventForm.control} name="description" render={({ field }) => (<FormItem><FormLabel>Description</FormLabel><FormControl><Textarea {...field} /></FormControl><FormMessage /></FormItem>)} />
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField control={eventForm.control} name="category" render={({ field }) => (<FormItem><FormLabel>Category</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select a category" /></SelectTrigger></FormControl><SelectContent><SelectItem value="Music">Music</SelectItem><SelectItem value="Art">Art</SelectItem><SelectItem value="Food">Food</SelectItem><SelectItem value="Sports">Sports</SelectItem><SelectItem value="Culture">Culture</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                     <FormField control={eventForm.control} name="venueId" render={({ field }) => (<FormItem><FormLabel>Venue</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select a venue" /></SelectTrigger></FormControl><SelectContent>{venues.map(venue => <SelectItem key={venue.id} value={venue.id}>{venue.name}</SelectItem>)}</SelectContent></Select><FormMessage /></FormItem>)} />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField control={eventForm.control} name="image" render={({ field }) => (<FormItem><FormLabel>Image URL</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
                     <FormField control={eventForm.control} name="imageHint" render={({ field }) => (<FormItem><FormLabel>Image Hint</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>)} />
                 </div>

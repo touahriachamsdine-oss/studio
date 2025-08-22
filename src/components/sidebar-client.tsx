@@ -45,7 +45,7 @@ export function SidebarClient({ locale, translations }: SidebarClientProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" className={cn('w-full justify-start text-base')}>
+        <Button variant="ghost" size="lg" className={cn('w-full justify-start text-base')}>
           <Settings className="mr-3 h-5 w-5" />
           {translations.settings}
         </Button>

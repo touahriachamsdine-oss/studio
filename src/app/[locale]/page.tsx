@@ -56,7 +56,7 @@ export default function Home() {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-muted-foreground/30 bg-card p-12 text-center h-64">
+        <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-foreground/20 bg-card p-12 text-center h-64">
             <h3 className="text-xl font-bold tracking-tight text-foreground">No events found</h3>
             <p className="text-muted-foreground">Try adjusting your search or filters.</p>
         </div>
