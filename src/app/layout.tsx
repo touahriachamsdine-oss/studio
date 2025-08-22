@@ -33,7 +33,7 @@ export default function RootLayout({
       </head>
       <body className={cn('font-body antialiased', 'bg-background text-foreground')}>
         <div className="relative flex min-h-screen">
-          <Sidebar />
+          <Sidebar locale={locale || 'en'} />
           <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
             {children}
           </main>
