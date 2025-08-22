@@ -1,11 +1,12 @@
+
 {
-  "settings": "Settings",
-  "manage_settings": "Manage your settings",
-  "language": "Language",
-  "push_notifications": "Push Notifications",
   "home": "Home",
   "calendar": "Calendar",
   "map": "Map",
   "touristGuide": "Tourist Guide",
-  "forYou": "For You"
+  "forYou": "For You",
+  "settings": "Settings",
+  "manage_settings": "Manage your settings",
+  "language": "Language",
+  "push_notifications": "Push Notifications"
 }

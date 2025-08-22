@@ -1,11 +1,12 @@
+
 {
-  "settings": "الإعدادات",
-  "manage_settings": "إدارة إعداداتك",
-  "language": "اللغة",
-  "push_notifications": "الإشعارات",
   "home": "الرئيسية",
   "calendar": "التقويم",
   "map": "الخريطة",
   "touristGuide": "دليل سياحي",
-  "forYou": "لك"
+  "forYou": "لأجلك",
+  "settings": "الإعدادات",
+  "manage_settings": "إدارة إعداداتك",
+  "language": "اللغة",
+  "push_notifications": "الإشعارات"
 }

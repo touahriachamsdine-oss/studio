@@ -1,11 +1,12 @@
+
 {
-  "settings": "Paramètres",
-  "manage_settings": "Gérez vos paramètres",
-  "language": "Langue",
-  "push_notifications": "Notifications Push",
   "home": "Accueil",
   "calendar": "Calendrier",
   "map": "Carte",
   "touristGuide": "Guide Touristique",
-  "forYou": "Pour Vous"
+  "forYou": "Pour Vous",
+  "settings": "Paramètres",
+  "manage_settings": "Gérez vos paramètres",
+  "language": "Langue",
+  "push_notifications": "Notifications Push"
 }
