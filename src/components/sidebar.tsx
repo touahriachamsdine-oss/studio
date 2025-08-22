@@ -32,23 +32,32 @@ export function Sidebar() {
     setIsClient(true);
   }, []);
 
-  const handleLanguageChange = (lng: string) => {
-    i18n.changeLanguage(lng);
-    const locales = i18n.options.lngs || ['en', 'fr', 'ar'];
-    const currentLocale = locales.find(loc => pathname.startsWith(`/${loc}`));
+  const handleLanguageChange = (newLocale: string) => {
+    i18n.changeLanguage(newLocale);
+    
+    // Remove any existing locale prefix
     let newPath = pathname;
-
+    const locales = i18n.options.lngs || ['en', 'fr', 'ar'];
+    const currentLocale = locales.find(loc => newPath.startsWith(`/${loc}`));
     if (currentLocale) {
-      newPath = pathname.replace(`/${currentLocale}`, `/${lng}`);
-    } else {
-      // It might be the default locale without a prefix
-      newPath = `/${lng}${pathname}`;
+      newPath = newPath.substring(currentLocale.length + 1); // remove /<locale>
     }
+
+    // Add new locale prefix if it's not the default
+    if (newLocale !== 'en') {
+      newPath = `/${newLocale}${newPath || '/'}`;
+    }
+    
+    // Ensure root path is handled correctly
+    if (newPath === '') {
+        newPath = '/';
+    }
+
     router.push(newPath);
   };
   
 
-  const currentLang = isClient ? i18n.language : 'en';
+  const currentLang = isClient ? i18n.language.split('-')[0] : 'en';
 
   return (
     <aside className="sticky top-0 h-screen w-16 bg-card text-card-foreground border-e transition-all duration-300 ease-in-out flex flex-col items-center py-4 shadow-md">
