@@ -1,0 +1,146 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* White */
+    --foreground: 0 0% 0%; /* Black */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 0 0% 0%; /* Black */
+
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 0 0% 0%; /* Black */
+
+    --primary: 30 60% 50%; /* Bronze */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 30 60% 95%; /* Lighter Bronze for secondary elements */
+    --secondary-foreground: 30 60% 25%; /* Darker Bronze for text on secondary */
+
+    --muted: 0 0% 96.1%; /* Light Gray */
+    --muted-foreground: 0 0% 25%; /* Darker Gray for better contrast */
+
+    --accent: 0 0% 0%; /* Black */
+    --accent-foreground: 0 0% 100%; /* White */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 85%; /* Light Gray border */
+    --input: 0 0% 85%; /* Light Gray input background */
+    --ring: 30 60% 50%; /* Bronze for focus rings */
+
+    --radius: 0.5rem;
+
+    /* Sidebar specific colors, adjusted for LexConnect theme */
+    --sidebar-background: 0 0% 98%; /* Very light gray, almost white */
+    --sidebar-foreground: 0 0% 15%; /* Dark gray for text */
+    --sidebar-primary: 30 60% 50%; /* Bronze for active/selected items */
+    --sidebar-primary-foreground: 0 0% 100%; /* White text on primary */
+    --sidebar-accent: 30 60% 90%; /* Light Bronze for hover/accent */
+    --sidebar-accent-foreground: 30 60% 30%; /* Darker Bronze text on accent */
+    --sidebar-border: 0 0% 90%; /* Light gray border for sidebar */
+    --sidebar-ring: 30 60% 50%; /* Bronze for focus rings within sidebar */
+    
+    --chart-1: 30 60% 50%; /* Bronze */
+    --chart-2: 30 60% 60%;
+    --chart-3: 30 60% 70%;
+    --chart-4: 30 60% 80%;
+    --chart-5: 30 60% 90%;
+  }
+
+  .dark {
+    /* Define dark theme if needed in future, for now keep it consistent with light or define explicitly if user wants */
+    --background: 0 0% 10%; /* Dark Gray */
+    --foreground: 0 0% 95%; /* Light Gray */
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 30 60% 50%; /* Bronze */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 30 60% 20%; /* Darker Bronze */
+    --secondary-foreground: 30 60% 80%; /* Lighter Bronze */
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 75%; /* Lighter Gray for better contrast on dark bg */
+
+    --accent: 0 0% 90%; /* Light Gray for dark mode accent */
+    --accent-foreground: 0 0% 10%; /* Dark text on light accent */
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 30 60% 50%; /* Bronze */
+
+    --sidebar-background: 0 0% 12%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 30 60% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 60% 25%;
+    --sidebar-accent-foreground: 30 60% 85%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 30 60% 50%;
+
+    --chart-1: 30 60% 50%;
+    --chart-2: 30 60% 40%;
+    --chart-3: 30 60% 30%;
+    --chart-4: 30 60% 20%;
+    --chart-5: 30 60% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground leading-relaxed; /* Added leading-relaxed */
+    font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-lora), Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
+  h1 { @apply mb-6; } /* Added bottom margin for h1 */
+  h2 { @apply mb-4; } /* Added bottom margin for h2 */
+  h3 { @apply mb-3; } /* Added bottom margin for h3 */
+  h4 { @apply mb-2; } /* Added bottom margin for h4 */
+  /* h5 and h6 can often be left with default or smaller margins */
+
+
+  /* Apply Tajawal when Arabic is active */
+  .font-arabic-active {
+    font-family: var(--font-tajawal), var(--font-inter), system-ui, sans-serif;
+    @apply leading-relaxed; /* Ensure relaxed line-height for Arabic too */
+  }
+  .font-arabic-active h1,
+  .font-arabic-active h2,
+  .font-arabic-active h3,
+  .font-arabic-active h4,
+  .font-arabic-active h5,
+  .font-arabic-active h6 {
+    font-family: var(--font-tajawal), var(--font-lora), serif;
+  }
+}
+
+/* Tailwind class for body font if needed (optional, as it's applied globally) */
+.font-body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Tailwind class for heading font if needed (optional, as it's applied globally) */
+.font-heading {
+  font-family: var(--font-lora), serif;
+}
+
